@@ -22,8 +22,11 @@
                 "IS_VS6_BUILD": "ON",
                 "RTS_FLAGS": "/W3"
             },
-            "vendor": {
-                "jetbrains.com/clion": {
+            "toolset": "v60,VCTargetsPath=C:/Users/runner/work/GeneralsGameCode/GeneralsGameCode/Dependencies/vctargetspath/v4.0",
+            "vendor":
+            {
+                "jetbrains.com/clion":
+                {
                     "toolchain": "Visual Studio 6"
                 }
             }
