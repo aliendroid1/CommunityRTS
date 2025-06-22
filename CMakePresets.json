@@ -1,26 +1,33 @@
 {
     "version": 6,
-    "cmakeMinimumRequired": {
+    "cmakeMinimumRequired":
+    {
         "major": 3,
         "minor": 25,
         "patch": 0
     },
-    "configurePresets": [
+    "configurePresets":
+    [
         {
             "name": "vc6",
             "displayName": "Windows 32bit VC6 Release",
-            "generator": "NMake Makefiles",
+            "generator": "Ninja",
             "hidden": false,
             "binaryDir": "${sourceDir}/build/${presetName}",
-            "cacheVariables": {
+            "toolchainFile": "${sourceDir}/cmake/vc6toolchain.cmake",
+            "cacheVariables":
+            {
+                "CMAKE_VERBOSE_MAKEFILE": "TRUE",
                 "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
                 "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL",
-                "CMAKE_MSVC_DEBUG_INFORMATION_FORMAT": "$<$<CONFIG:Release,Debug,RelWithDebInfo>:ProgramDatabase>",
+                "CMAKE_MSVC_DEBUG_INFORMATION_FORMAT": "$<$<CONFIG:Release,Debug,RelWithDebInfo>:Embedded>",
                 "CMAKE_BUILD_TYPE": "Release",
                 "RTS_FLAGS": "/W3"
             },
-            "vendor": {
-                "jetbrains.com/clion": {
+            "vendor":
+            {
+                "jetbrains.com/clion":
+                {
                     "toolchain": "Visual Studio 6"
                 }
             }
@@ -30,7 +37,8 @@
             "displayName": "Windows 32bit VC6 Profile",
             "hidden": false,
             "inherits": "vc6",
-            "cacheVariables": {
+            "cacheVariables":
+            {
                 "RTS_BUILD_OPTION_PROFILE": "ON"
             }
         },
@@ -38,7 +46,8 @@
             "name": "vc6-internal",
             "displayName": "Windows 32bit VC6 Internal",
             "inherits": "vc6",
-            "cacheVariables": {
+            "cacheVariables":
+            {
                 "RTS_BUILD_OPTION_INTERNAL": "ON"
             }
         },
@@ -47,7 +56,8 @@
             "displayName": "Windows 32bit VC6 Debug",
             "hidden": false,
             "inherits": "vc6",
-            "cacheVariables": {
+            "cacheVariables":
+            {
                 "CMAKE_BUILD_TYPE": "Debug",
                 "RTS_BUILD_OPTION_DEBUG": "ON"
             }
@@ -58,7 +68,8 @@
             "generator": "Ninja Multi-Config",
             "hidden": true,
             "binaryDir": "${sourceDir}/build/${presetName}",
-            "cacheVariables": {
+            "cacheVariables":
+            {
                 "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
                 "CMAKE_MSVC_DEBUG_INFORMATION_FORMAT": "$<$<CONFIG:Release,Debug,RelWithDebInfo>:Embedded>",
                 "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL"
@@ -70,7 +81,8 @@
             "generator": "Ninja Multi-Config",
             "hidden": true,
             "binaryDir": "${sourceDir}/build/${presetName}",
-            "cacheVariables": {
+            "cacheVariables":
+            {
                 "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
                 "CMAKE_MSVC_DEBUG_INFORMATION_FORMAT": "$<$<CONFIG:Release,Debug,RelWithDebInfo>:Embedded>",
                 "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL",
@@ -82,15 +94,19 @@
             "inherits": "default",
             "hidden": false,
             "displayName": "Windows 32bit Release",
-            "architecture": {
+            "architecture":
+            {
                 "value": "Win32",
                 "strategy": "external"
             },
-            "cacheVariables": {
+            "cacheVariables":
+            {
                 "RTS_FLAGS": "/W3"
             },
-            "vendor": {
-                "jetbrains.com/clion": {
+            "vendor":
+            {
+                "jetbrains.com/clion":
+                {
                     "toolchain": "Visual Studio"
                 }
             }
@@ -99,7 +115,8 @@
             "name": "win32-profile",
             "inherits": "win32",
             "displayName": "Windows 32bit Profile",
-            "cacheVariables": {
+            "cacheVariables":
+            {
                 "RTS_BUILD_OPTION_PROFILE": "ON"
             }
         },
@@ -107,7 +124,8 @@
             "name": "win32-internal",
             "inherits": "win32",
             "displayName": "Windows 32bit Internal",
-            "cacheVariables": {
+            "cacheVariables":
+            {
                 "RTS_BUILD_OPTION_INTERNAL": "ON"
             }
         },
@@ -115,7 +133,8 @@
             "name": "win32-debug",
             "inherits": "win32",
             "displayName": "Windows 32bit Debug",
-            "cacheVariables": {
+            "cacheVariables":
+            {
                 "RTS_BUILD_OPTION_DEBUG": "ON"
             }
         },
@@ -124,15 +143,19 @@
             "inherits": "default-vcpkg",
             "hidden": false,
             "displayName": "Windows 32bit VCPKG Release",
-            "architecture": {
+            "architecture":
+            {
                 "value": "Win32",
                 "strategy": "external"
             },
-            "cacheVariables": {
+            "cacheVariables":
+            {
                 "RTS_FLAGS": "/W3"
             },
-            "vendor": {
-                "jetbrains.com/clion": {
+            "vendor":
+            {
+                "jetbrains.com/clion":
+                {
                     "toolchain": "Visual Studio"
                 }
             }
@@ -141,7 +164,8 @@
             "name": "win32-vcpkg-profile",
             "inherits": "win32-vcpkg",
             "displayName": "Windows 32bit VCPKG Profile",
-            "cacheVariables": {
+            "cacheVariables":
+            {
                 "RTS_BUILD_OPTION_PROFILE": "ON"
             }
         },
@@ -149,7 +173,8 @@
             "name": "win32-vcpkg-internal",
             "inherits": "win32-vcpkg",
             "displayName": "Windows 32bit VCPKG Internal",
-            "cacheVariables": {
+            "cacheVariables":
+            {
                 "RTS_BUILD_OPTION_INTERNAL": "ON"
             }
         },
@@ -157,7 +182,8 @@
             "name": "win32-vcpkg-debug",
             "inherits": "win32-vcpkg",
             "displayName": "Windows 32bit VCPKG Debug",
-            "cacheVariables": {
+            "cacheVariables":
+            {
                 "RTS_BUILD_OPTION_DEBUG": "ON"
             }
         },
@@ -168,7 +194,8 @@
             "displayName": "Unix 32bit VCPKG Release"
         }
     ],
-    "buildPresets": [
+    "buildPresets":
+    [
         {
             "name": "vc6",
             "configurePreset": "vc6",
@@ -257,10 +284,12 @@
             "configuration": "Release"
         }
     ],
-    "workflowPresets": [
+    "workflowPresets":
+    [
         {
             "name": "vc6",
-            "steps": [
+            "steps":
+            [
                 {
                     "type": "configure",
                     "name": "vc6"
@@ -273,7 +302,8 @@
         },
         {
             "name": "vc6-debug",
-            "steps": [
+            "steps":
+            [
                 {
                     "type": "configure",
                     "name": "vc6-debug"
@@ -286,7 +316,8 @@
         },
         {
             "name": "vc6-internal",
-            "steps": [
+            "steps":
+            [
                 {
                     "type": "configure",
                     "name": "vc6-internal"
@@ -299,7 +330,8 @@
         },
         {
             "name": "vc6-profile",
-            "steps": [
+            "steps":
+            [
                 {
                     "type": "configure",
                     "name": "vc6-profile"
@@ -312,7 +344,8 @@
         },
         {
             "name": "win32",
-            "steps": [
+            "steps":
+            [
                 {
                     "type": "configure",
                     "name": "win32"
@@ -325,7 +358,8 @@
         },
         {
             "name": "win32-internal",
-            "steps": [
+            "steps":
+            [
                 {
                     "type": "configure",
                     "name": "win32-internal"
@@ -338,7 +372,8 @@
         },
         {
             "name": "win32-profile",
-            "steps": [
+            "steps":
+            [
                 {
                     "type": "configure",
                     "name": "win32-profile"
@@ -351,7 +386,8 @@
         },
         {
             "name": "win32-debug",
-            "steps": [
+            "steps":
+            [
                 {
                     "type": "configure",
                     "name": "win32-debug"
@@ -364,7 +400,8 @@
         },
         {
             "name": "win32-vcpkg",
-            "steps": [
+            "steps":
+            [
                 {
                     "type": "configure",
                     "name": "win32-vcpkg"
@@ -377,7 +414,8 @@
         },
         {
             "name": "win32-vcpkg-internal",
-            "steps": [
+            "steps":
+            [
                 {
                     "type": "configure",
                     "name": "win32-vcpkg-internal"
@@ -390,7 +428,8 @@
         },
         {
             "name": "win32-vcpkg-profile",
-            "steps": [
+            "steps":
+            [
                 {
                     "type": "configure",
                     "name": "win32-vcpkg-profile"
@@ -403,7 +442,8 @@
         },
         {
             "name": "win32-vcpkg-debug",
-            "steps": [
+            "steps":
+            [
                 {
                     "type": "configure",
                     "name": "win32-vcpkg-debug"
@@ -416,7 +456,8 @@
         },
         {
             "name": "unix",
-            "steps": [
+            "steps":
+            [
                 {
                     "type": "configure",
                     "name": "unix"
