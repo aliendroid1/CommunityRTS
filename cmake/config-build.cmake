@@ -18,7 +18,6 @@ add_feature_info(CoreTools RTS_BUILD_CORE_TOOLS "Build Core Mod Tools")
 add_feature_info(CoreExtras RTS_BUILD_CORE_EXTRAS "Build Core Extra Tools/Tests")
 add_feature_info(ZeroHourStuff RTS_BUILD_ZEROHOUR "Build Zero Hour code")
 add_feature_info(GeneralsStuff RTS_BUILD_GENERALS "Build Generals code")
-add_feature_info(InternalBuild RTS_BUILD_OPTION_INTERNAL "Building as an \"Internal\" build")
 add_feature_info(ProfileBuild RTS_BUILD_OPTION_PROFILE "Building as a \"Profile\" build")
 add_feature_info(DebugBuild RTS_BUILD_OPTION_DEBUG "Building as a \"Debug\" build")
 add_feature_info(AddressSanitizer RTS_BUILD_OPTION_ASAN "Building with address sanitizer")
@@ -49,26 +48,29 @@ if(NOT IS_VS6_BUILD)
     target_compile_features(core_config INTERFACE cxx_std_20)
 endif()
 
-target_compile_options(core_config INTERFACE ${RTS_FLAGS})
+target_compile_options(core_config INTERFACE "/W3")
 
 # This disables a lot of warnings steering developers to use windows only functions/function names.
 if(MSVC)
-    target_compile_definitions(core_config INTERFACE _CRT_NONSTDC_NO_WARNINGS _CRT_SECURE_NO_WARNINGS $<$<CONFIG:DEBUG>:_DEBUG_CRT>)
+    target_compile_definitions(core_config INTERFACE _CRT_NONSTDC_NO_WARNINGS _CRT_SECURE_NO_WARNINGS $<$<CONFIG:Debug>:_DEBUG_CRT>)
 endif()
 
 if(UNIX)
     target_compile_definitions(core_config INTERFACE _UNIX)
 endif()
 
+# If RTS_BUILD_OPTION_DEBUG and/or RTS_BUILD_OPTION_PROFILE is set then the respective compile definitions are set for all generator configs
 if(RTS_BUILD_OPTION_DEBUG)
     target_compile_definitions(core_config INTERFACE RTS_DEBUG WWDEBUG DEBUG)
-else()
-    target_compile_definitions(core_config INTERFACE RTS_RELEASE)
+endif()
+if(RTS_BUILD_OPTION_PROFILE)
+    target_compile_definitions(core_config INTERFACE RTS_PROFILE)
+endif()
 
-    if(RTS_BUILD_OPTION_INTERNAL)
-        target_compile_definitions(core_config INTERFACE RTS_INTERNAL)
-    endif()
-    if(RTS_BUILD_OPTION_PROFILE)
-        target_compile_definitions(core_config INTERFACE RTS_PROFILE)
-    endif()
+# otherwise DEBUG defines are tied to Debug generator config and PROFILE defines to RelWithDebug info generator config
+if(NOT RTS_BUILD_OPTION_DEBUG AND NOT RTS_BUILD_OPTION_PROFILE)
+    target_compile_definitions(core_config INTERFACE
+        $<$<CONFIG:Debug>:RTS_DEBUG;WWDEBUG;DEBUG>
+        $<$<CONFIG:RelWithDebInfo>:RTS_PROFILE>
+    )
 endif()
