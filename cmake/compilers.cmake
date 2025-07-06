@@ -46,6 +46,8 @@ else()
     set(CMAKE_JOB_POOL_COMPILE compile)
     # and all link steps go into 'link' (so only one link ever runs since vc6 can't handle multithreaded linking)
     set(CMAKE_JOB_POOL_LINK link)
+    # Needed to make vc6 compile with ninja
+    set(CMAKE_MSVC_DEBUG_INFORMATION_FORMAT "")
 endif()
 
 if(RTS_BUILD_OPTION_ASAN)
